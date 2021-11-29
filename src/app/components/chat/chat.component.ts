@@ -12,18 +12,27 @@ export class ChatComponent implements OnInit {
   mensaje: string = '';
 
   constructor(
-    private chats: ChatService
+    public chats: ChatService
   ) {
-    this.chats.loadMensajes().subscribe((msj: any[]) => {
-      console.log(msj);
-    });
+    this.chats.loadMensajes().subscribe();
   }
 
   ngOnInit(): void {
   }
 
   enviarMensaje() {
-    console.log(this.mensaje);
+    if (this.mensaje.length === 0) {
+      return;
+    } else {
+      this.chats.addMensaje(this.mensaje)
+        .then(() => {
+          console.log('enviado');
+          this.mensaje = '';
+        })
+        .catch(err => {
+          console.error(err);
+        });
+    }
   }
 
 }
