@@ -1,0 +1,22 @@
+<h3>Chat</h3>
+
+<div class="app-mensajes" id="app-mensajes">
+  <div class="text-end">
+    <span class="badge bg-info text-dark">Konny</span>
+    <p>
+      Este es mi mensaje xd se caera el servidor de Cinemark.
+    </p>
+  </div>
+
+  <div>
+    <span class="badge bg-warning text-dark">Carlos</span>
+    <p>
+      Si amor, pero hay que conseguir si o si esas entradas.
+    </p>
+  </div>
+</div>
+
+<!-- para usar el ng model, importamos forms module en app.module -->
+<input type="text" [(ngModel)]="mensaje" #it="ngModel"
+  placeholder="Enviar mensaje..." (keyup.enter)="enviarMensaje()"
+  class="form-control">
