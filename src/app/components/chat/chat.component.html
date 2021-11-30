@@ -1,8 +1,12 @@
 <h3>Chat</h3>
 
 <div class="app-mensajes" id="app-mensajes">
-  <div class="text-end" *ngFor="let c of chats.chat">
-    <span class="badge bg-info text-dark">Konny</span>
+  <div [ngClass]="{'text-right': chats.usuario.uid == c.uid}" *ngFor="let c of chats.chat">
+    <span class="badge" [ngClass]="{'bg-info': chats.usuario.uid == c.uid, 
+    'bg-warning': chats.usuario.uid == c.uid
+  }
+    
+    ">{{c.emisor}}</span>
     <p>
       {{ c.mensaje }}
     </p>
@@ -21,6 +25,5 @@
 
 <!-- aunque en realidad no estoy segura de como lo hace, ngmodel
 crea una instancia de la variable en el .ts y se comunica con el -->
-<input type="text" [(ngModel)]="mensaje" #it="ngModel"
-  placeholder="Enviar mensaje..." (keyup.enter)="enviarMensaje()"
+<input type="text" [(ngModel)]="mensaje" #it="ngModel" placeholder="Enviar mensaje..." (keyup.enter)="enviarMensaje()"
   class="form-control">
